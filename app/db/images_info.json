@@ -181,5 +181,46 @@
       ],
       "notes": ""
     }
+  },
+  {
+    "id": "e1c009edd92b480891280b9b7a1f22d0",
+    "original_image_path": "shopping.jpg",
+    "stored_image_path": "db/images/2026-04-13/bea3df09_shopping.jpg",
+    "timestamp": "2026-04-13T18:00:47.350221",
+    "classification": {
+      "description": "A striking vibrant red midi dress featuring a deeply plunging V-neckline and wide, structured shoulder straps. The bodice is meticulously tailored with visible button detailing down the front, cinching at the waist before flowing into a dramatically voluminous, gathered A-line skirt that falls to a midi length. This sophisticated silhouette exudes elegance and is styled with black patent slingback heels.",
+      "garment_type": "dress",
+      "style": "elegant, sophisticated, classic, formal",
+      "material": "structured woven fabric (e.g., sateen, cotton blend with body)",
+      "color_palette": [
+        "vibrant red"
+      ],
+      "pattern": "solid",
+      "season": "all-season",
+      "occasion": "evening, cocktail, formal, special event, gala",
+      "consumer_profile": "confident fashionista, event-goer, luxury consumer, young professional",
+      "trend_notes": "structured silhouette, vibrant color trend, modern classic, statement dressing",
+      "location_context": {
+        "continent": "unknown",
+        "country": "unknown",
+        "city": "unknown",
+        "setting": "studio"
+      },
+      "tags": [
+        "red dress",
+        "midi dress",
+        "cocktail dress",
+        "formal dress",
+        "v-neck",
+        "structured bodice",
+        "voluminous skirt",
+        "gathered skirt",
+        "elegant",
+        "sophisticated",
+        "special occasion",
+        "classic style",
+        "statement dress"
+      ]
+    }
   }
 ]

@@ -31,7 +31,7 @@ def test_parse_llm_json_stripping():
     import re
 
     # Simulate Gemini's tendency to wrap json in markdown fences
-    raw_response = "```json\n{\n  \"garment_type\": \"dress\",\n  \"style\": \"casual\",\n  \"material\": \"cotton\",\n  \"pattern\": \"solid\",\n  \"season\": \"summer\",\n  \"occasion\": \"everyday\",\n  \"consumer_profile\": \"young adult\",\n  \"trend_notes\": \"timeless\",\n  \"color_palette\": [\"blue\"],\n  \"location_context\": {\"continent\": \"North America\", \"country\": \"USA\", \"city\": \"NY\", \"setting\": \"street\"},\n  \"description\": \"A blue dress.\",\n  \"tags\": [\"blue dress\"]\n}\n```"
+    raw_response = "```json\n{\n  \"garment_type\": \"dress\",\n  \"style\": \"casual\",\n  \"material\": \"cotton\",\n  \"pattern\": \"solid\",\n  \"season\": \"summer\",\n  \"occasion\": \"everyday\",\n  \"consumer_profile\": \"young adult\",\n  \"trend_notes\": \"timeless\",\n  \"designer\": \"some brand\",\n  \"color_palette\": [\"blue\"],\n  \"location_context\": {\"continent\": \"North America\", \"country\": \"USA\", \"city\": \"NY\", \"setting\": \"street\"},\n  \"description\": \"A blue dress.\",\n  \"tags\": [\"blue dress\"]\n}\n```"
 
     cleaned = re.sub(r"^```(?:json)?\s*\n?", "", raw_response.strip())
     cleaned = re.sub(r"\n?```\s*$", "", cleaned.strip())
@@ -104,7 +104,38 @@ def test_flask_gallery_and_upload_routes(client):
     assert response.status_code == 200
     assert b"Upload Garment" in response.data
 
-    # Note: We do not test actual POST /upload to avoid hitting the live Gemini API inside CI.
-    # Instead, we test that the fallback works.
-    response = client.post('/upload', data={})
-    assert response.status_code == 302 # Redirect loop missing file flash
+    import io
+    from unittest.mock import patch
+    from fashion_agent.models import GarmentClassification, LocationContext
+
+    mock_classification = GarmentClassification(
+        description="A nice test garment",
+        garment_type="mock dress",
+        style="mock style",
+        material="mock material",
+        color_palette=["mock red"],
+        pattern="mock pattern",
+        season="mock season",
+        occasion="mock occasion",
+        consumer_profile="mock profile",
+        trend_notes="mock notes",
+        designer="mock designer",
+        location_context=LocationContext(continent="mock continent", country="mock country", city="mock city", setting="mock setting"),
+        tags=["mock tag"]
+    )
+
+    with patch('ui.app.classify_image', return_value=mock_classification):
+        data = {
+            'image': (io.BytesIO(b"fake image bytes"), 'test_image.jpg')
+        }
+        response = client.post('/upload', data=data, content_type='multipart/form-data')
+        
+        # Should redirect to the image detail page after successful upload + classify + store
+        assert response.status_code == 302
+        assert '/image/' in response.location
+        
+        # Follow the redirect to ensure the page renders with the mocked data
+        detail_response = client.get(response.location)
+        assert detail_response.status_code == 200
+        assert b"mock designer" in detail_response.data
+        assert b"mock dress" in detail_response.data

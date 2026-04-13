@@ -80,6 +80,7 @@
            data-year="{{ record.timestamp[:4] }}"
            data-month="{% set m = record.timestamp[5:7] %}{{ 'january' if m=='01' else 'february' if m=='02' else 'march' if m=='03' else 'april' if m=='04' else 'may' if m=='05' else 'june' if m=='06' else 'july' if m=='07' else 'august' if m=='08' else 'september' if m=='09' else 'october' if m=='10' else 'november' if m=='11' else 'december' }}"
            data-description="{{ record.classification.description | lower }}"
+           data-designer="{{ record.classification.designer | default('unknown') | lower }}"
            data-tags="{{ record.classification.tags | join(', ') | lower }}"
            data-annotations="{{ (record.annotations.notes if record.annotations is defined and record.annotations else '') | lower }}"
            data-user-tags="{{ (record.annotations.user_tags | join(', ') if record.annotations is defined and record.annotations and record.annotations.user_tags else '') | lower }}"

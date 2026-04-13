@@ -152,6 +152,7 @@ function applyFiltersAndSearch() {
                 card.dataset.occasion || '',
                 card.dataset.continent || '',
                 card.dataset.country || '',
+                card.dataset.designer || '',
                 card.dataset.annotations || '',
                 card.dataset.userTags || '',
             ].join(' ');

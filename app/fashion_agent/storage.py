@@ -71,13 +71,14 @@ def _update_master_attributes(records: list[dict]) -> None:
         "city": set(),
         "year": set(),
         "month": set(),
+        "designer": set(),
         "tags": set(),
         "user_tags": set()
     }
 
     for r in records:
         c = r.get("classification", {})
-        for field in ["garment_type", "style", "material", "pattern", "season", "occasion", "consumer_profile", "trend_notes"]:
+        for field in ["garment_type", "style", "material", "pattern", "season", "occasion", "consumer_profile", "trend_notes", "designer"]:
             val = c.get(field, "")
             # Split comma-separated values to distinct elements
             for v in str(val).split(","):

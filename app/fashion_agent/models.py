@@ -23,6 +23,7 @@ class GarmentClassification(BaseModel):
     occasion: str = Field(description="e.g. everyday, office, evening, festival, resort, bridal")
     consumer_profile: str = Field(description="Target consumer profile")
     trend_notes: str = Field(description="Notable trend observations")
+    designer: str = Field(default="unknown", description="Best guess of the designer or brand")
     location_context: LocationContext = Field(description="Location and setting context")
     tags: list[str] = Field(description="Searchable tags summarizing key attributes")
 
