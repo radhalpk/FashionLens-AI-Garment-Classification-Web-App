@@ -3,7 +3,7 @@
 FashionLens is a lightweight, AI-powered web application that helps fashion designers organize, search, and reuse inspiration imagery captured in the field. Built as a proof-of-concept, it leverages multimodal large language models (LLMs) via LangGraph to automatically extract highly structured metadata from raw images.
 
 ## Features
-- **Intelligent Classification**: Upload any fashion image, and Gemini 2.0 Vision automatically identifies the Garment Type, Style, Material, Context, Setting, and Color Palette.
+- **Intelligent Classification**: Upload any fashion image, and Gemini 2.0 Vision automatically identifies the Garment Type, Style, Material, Context, Setting, Color Palette, and Designer.
 - **Dynamic Filtering**: A real-time, purely native HTML5 accordion filter system automatically parses the unified dataset of your wardrobe without bloated JS logic.
 - **Searchable Index**: Perform lightning-fast, client-side, multi-field fuzzy text searches across descriptions and deep metadata.
 - **Designer Annotations**: Supplement the AI's output with your own context, adding custom searchable tags and observations.
@@ -87,4 +87,4 @@ python3 -m pytest tests/test_backend.py
 Includes:
 - **Unit Testing:** Validates regex markdown-fencing strippers.
 - **Integration Testing:** Assesses the `_update_master_attributes` algorithm's ability to recursively extract correct datasets.
-- **E2E Testing:** Simulates Flask HTTP traffic against active routes natively.
+- **E2E Testing:** Simulates Flask HTTP traffic against active routes natively, using `unittest.mock` to safely intercept the live Gemini API call and simulate a complete upload, classify, and filter workflow without incurring API costs.
