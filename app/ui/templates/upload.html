@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Upload{% endblock %}
+
+{% block content %}
+<div class="upload-page">
+    <div class="page-header">
+        <h1>Upload Garment</h1>
+        <p class="page-subtitle">Upload a fashion image for AI classification</p>
+    </div>
+
+    <div class="upload-container">
+        <form id="uploadForm" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+            <!-- Drop Zone -->
+            <div id="dropZone" class="drop-zone">
+                <div id="dropContent" class="drop-content">
+                    <div class="drop-icon">📷</div>
+                    <h3>Drag & drop your image here</h3>
+                    <p>or click to browse</p>
+                    <p class="drop-hint">Supports JPG, PNG, WEBP, GIF</p>
+                </div>
+                <img id="previewImage" class="preview-image" style="display:none" alt="Preview">
+                <input
+                    type="file"
+                    id="imageInput"
+                    name="image"
+                    accept=".jpg,.jpeg,.png,.webp,.gif"
+                    required
+                    hidden
+                >
+            </div>
+
+            <!-- File Info -->
+            <div id="fileInfo" class="file-info" style="display:none">
+                <span id="fileName" class="file-name"></span>
+                <button type="button" id="removeFile" class="btn btn-ghost btn-sm">Remove</button>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" id="submitBtn" class="btn btn-primary btn-lg" disabled>
+                <span id="submitText">Classify Garment</span>
+                <span id="submitLoader" class="loader" style="display:none"></span>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const dropZone = document.getElementById('dropZone');
+    const imageInput = document.getElementById('imageInput');
+    const previewImage = document.getElementById('previewImage');
+    const dropContent = document.getElementById('dropContent');
+    const fileInfo = document.getElementById('fileInfo');
+    const fileName = document.getElementById('fileName');
+    const submitBtn = document.getElementById('submitBtn');
+    const removeFile = document.getElementById('removeFile');
+    const uploadForm = document.getElementById('uploadForm');
+
+    // Click to browse
+    dropZone.addEventListener('click', () => imageInput.click());
+
+    // Drag & drop
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+    });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        if (e.dataTransfer.files.length) {
+            imageInput.files = e.dataTransfer.files;
+            showPreview(e.dataTransfer.files[0]);
+        }
+    });
+
+    // File selected
+    imageInput.addEventListener('change', (e) => {
+        if (e.target.files.length) showPreview(e.target.files[0]);
+    });
+
+    function showPreview(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            previewImage.src = e.target.result;
+            previewImage.style.display = 'block';
+            dropContent.style.display = 'none';
+            fileInfo.style.display = 'flex';
+            fileName.textContent = file.name;
+            submitBtn.disabled = false;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Remove file
+    removeFile.addEventListener('click', (e) => {
+        e.stopPropagation();
+        imageInput.value = '';
+        previewImage.style.display = 'none';
+        dropContent.style.display = 'flex';
+        fileInfo.style.display = 'none';
+        submitBtn.disabled = true;
+    });
+
+    // Form submit — show loader
+    uploadForm.addEventListener('submit', () => {
+        document.getElementById('submitText').textContent = 'Classifying...';
+        document.getElementById('submitLoader').style.display = 'inline-block';
+        submitBtn.disabled = true;
+    });
+</script>
+{% endblock %}

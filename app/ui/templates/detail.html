@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+{% block title %}{{ record.classification.garment_type }}{% endblock %}
+
+{% block content %}
+<div class="detail-page">
+    <!-- Back link -->
+    <a href="{{ url_for('index') }}" class="back-link">← Back to Gallery</a>
+
+    <div class="detail-layout">
+        <!-- Image Section -->
+        <div class="detail-image-section">
+            <div class="detail-image-wrapper">
+                <img src="{{ url_for('serve_image', record_id=record.id) }}" alt="{{ record.classification.garment_type }}">
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="detail-info-section">
+            <!-- Header -->
+            <div class="detail-header">
+                <h1>{{ record.classification.garment_type }}</h1>
+                <span class="detail-timestamp">{{ record.timestamp[:10] }}</span>
+            </div>
+
+            <!-- Description -->
+            <div class="info-block">
+                <p class="detail-description">{{ record.classification.description }}</p>
+            </div>
+
+            <!-- Attributes Grid -->
+            <div class="attributes-grid">
+                <div class="attr-item">
+                    <span class="attr-label">Style</span>
+                    <span class="attr-value">{{ record.classification.style }}</span>
+                </div>
+                <div class="attr-item">
+                    <span class="attr-label">Material</span>
+                    <span class="attr-value">{{ record.classification.material }}</span>
+                </div>
+                <div class="attr-item">
+                    <span class="attr-label">Pattern</span>
+                    <span class="attr-value">{{ record.classification.pattern }}</span>
+                </div>
+                <div class="attr-item">
+                    <span class="attr-label">Season</span>
+                    <span class="attr-value">{{ record.classification.season }}</span>
+                </div>
+                <div class="attr-item">
+                    <span class="attr-label">Occasion</span>
+                    <span class="attr-value">{{ record.classification.occasion }}</span>
+                </div>
+                <div class="attr-item">
+                    <span class="attr-label">Consumer Profile</span>
+                    <span class="attr-value">{{ record.classification.consumer_profile }}</span>
+                </div>
+            </div>
+
+            <!-- Color Palette -->
+            <div class="info-block">
+                <h3 class="section-title">Color Palette</h3>
+                <div class="color-chips">
+                    {% for color in record.classification.color_palette %}
+                    <span class="color-chip">{{ color }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Location Context -->
+            <div class="info-block">
+                <h3 class="section-title">Location Context</h3>
+                <div class="location-info">
+                    <span class="location-item">📍 {{ record.classification.location_context.continent }}</span>
+                    {% if record.classification.location_context.country != 'unknown' %}
+                    <span class="location-item">🏳 {{ record.classification.location_context.country }}</span>
+                    {% endif %}
+                    {% if record.classification.location_context.city != 'unknown' %}
+                    <span class="location-item">🏙 {{ record.classification.location_context.city }}</span>
+                    {% endif %}
+                    <span class="location-item">📸 {{ record.classification.location_context.setting }}</span>
+                </div>
+            </div>
+
+            <!-- Trend Notes -->
+            <div class="info-block">
+                <h3 class="section-title">Trend Notes</h3>
+                <p class="trend-notes">{{ record.classification.trend_notes }}</p>
+            </div>
+
+            <!-- AI Tags -->
+            <div class="info-block">
+                <h3 class="section-title">AI Tags</h3>
+                <div class="tags-container">
+                    {% for tag in record.classification.tags %}
+                    <span class="tag ai-tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Designer Annotations Section -->
+            <div class="info-block annotations-section">
+                <h3 class="section-title">
+                    Designer Annotations
+                    <span class="annotation-badge">Your Notes</span>
+                </h3>
+
+                <!-- User Tags -->
+                <div class="annotation-field">
+                    <label>Your Tags</label>
+                    <div class="user-tags-container">
+                        <div id="userTags" class="tags-container">
+                            {% if record.annotations is defined and record.annotations and record.annotations.user_tags %}
+                                {% for tag in record.annotations.user_tags %}
+                                <span class="tag user-tag" data-tag="{{ tag }}">
+                                    {{ tag }}
+                                    <button class="tag-remove" onclick="removeUserTag('{{ tag }}')">✕</button>
+                                </span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="tag-input-wrapper">
+                            <input type="text" id="newTagInput" placeholder="Add a tag..." class="tag-input">
+                            <button onclick="addUserTag()" class="btn btn-sm btn-accent">Add</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Notes -->
+                <div class="annotation-field">
+                    <label>Notes & Observations</label>
+                    <textarea
+                        id="userNotes"
+                        class="notes-textarea"
+                        placeholder="Add your design notes, observations, mood board ideas..."
+                        rows="4"
+                    >{% if record.annotations is defined and record.annotations %}{{ record.annotations.notes }}{% endif %}</textarea>
+                </div>
+
+                <button onclick="saveAnnotations()" class="btn btn-primary" id="saveAnnotationsBtn">
+                    Save Annotations
+                </button>
+                <span id="saveStatus" class="save-status"></span>
+            </div>
+
+            <!-- Delete -->
+            <div class="info-block danger-zone">
+                <button onclick="deleteRecord()" class="btn btn-danger">Delete Record</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const RECORD_ID = "{{ record.id }}";
+
+    // Add tag on Enter key
+    document.getElementById('newTagInput').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') { e.preventDefault(); addUserTag(); }
+    });
+
+    function addUserTag() {
+        const input = document.getElementById('newTagInput');
+        const tag = input.value.trim();
+        if (!tag) return;
+
+        const container = document.getElementById('userTags');
+        const span = document.createElement('span');
+        span.className = 'tag user-tag';
+        span.dataset.tag = tag;
+        span.innerHTML = `${tag} <button class="tag-remove" onclick="removeUserTag('${tag}')">✕</button>`;
+        container.appendChild(span);
+        input.value = '';
+    }
+
+    function removeUserTag(tag) {
+        const el = document.querySelector(`.user-tag[data-tag="${tag}"]`);
+        if (el) el.remove();
+    }
+
+    function getUserTags() {
+        return Array.from(document.querySelectorAll('#userTags .user-tag'))
+            .map(el => el.dataset.tag);
+    }
+
+    function saveAnnotations() {
+        const btn = document.getElementById('saveAnnotationsBtn');
+        const status = document.getElementById('saveStatus');
+        btn.disabled = true;
+        btn.textContent = 'Saving...';
+
+        fetch(`/api/annotate/${RECORD_ID}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_tags: getUserTags(),
+                notes: document.getElementById('userNotes').value,
+            })
+        })
+        .then(r => r.json())
+        .then(data => {
+            btn.textContent = 'Save Annotations';
+            btn.disabled = false;
+            status.textContent = '✓ Saved';
+            status.className = 'save-status success';
+            setTimeout(() => { status.textContent = ''; }, 2000);
+        })
+        .catch(err => {
+            btn.textContent = 'Save Annotations';
+            btn.disabled = false;
+            status.textContent = '✕ Failed to save';
+            status.className = 'save-status error';
+        });
+    }
+
+    function deleteRecord() {
+        if (!confirm('Delete this record? This cannot be undone.')) return;
+        fetch(`/api/delete/${RECORD_ID}`, { method: 'DELETE' })
+            .then(() => window.location.href = '/');
+    }
+</script>
+{% endblock %}

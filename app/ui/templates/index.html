@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+<div class="gallery-page">
+    <!-- Header Section -->
+    <div class="page-header">
+        <h1>Inspiration Gallery</h1>
+        <p class="page-subtitle">{{ records|length }} garment{{ 's' if records|length != 1 }} classified</p>
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="controls-bar">
+        <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search descriptions, tags... e.g. 'embroidered neckline' or 'artisan market'"
+                autocomplete="off"
+            >
+            <button id="clearSearch" class="clear-btn" style="display:none">✕</button>
+        </div>
+
+        <button id="toggleFilters" class="filter-toggle-btn">
+            <span>Filters</span>
+            <span id="activeFilterCount" class="filter-badge" style="display:none">0</span>
+        </button>
+    </div>
+
+    <!-- Filters Panel -->
+    <div id="filtersPanel" class="filters-panel" style="display:none">
+        <div class="filters-grid">
+            {% for filter_name, values in filters.items() %}
+            {% if values %}
+            <details class="filter-group-details">
+                <summary class="filter-title">
+                    {{ filter_name | replace('_', ' ') | title }}
+                    <span class="chevron">▼</span>
+                </summary>
+                <div class="filter-dropdown">
+                    <div class="filter-dropdown-search">
+                        <input type="text" class="chip-search-input" placeholder="Search..." onkeyup="filterDropdown(this)">
+                    </div>
+                    <div class="filter-chips">
+                        {% for val in values %}
+                        <button
+                            class="filter-chip"
+                            data-filter="{{ filter_name }}"
+                            data-value="{{ val | lower }}"
+                        >{{ val }}</button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </details>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="filters-actions">
+            <button id="clearAllFilters" class="btn btn-ghost">Clear All Filters</button>
+        </div>
+    </div>
+
+    <!-- Image Grid -->
+    <div id="imageGrid" class="image-grid">
+        {% for record in records %}
+        <a href="{{ url_for('detail', record_id=record.id) }}" class="image-card"
+           data-garment-type="{{ record.classification.garment_type | lower }}"
+           data-style="{{ record.classification.style | lower }}"
+           data-material="{{ record.classification.material | lower }}"
+           data-pattern="{{ record.classification.pattern | lower }}"
+           data-season="{{ record.classification.season | lower }}"
+           data-occasion="{{ record.classification.occasion | lower }}"
+           data-consumer-profile="{{ record.classification.consumer_profile | lower }}"
+           data-trend-notes="{{ record.classification.trend_notes | lower }}"
+           data-color-palette="{{ record.classification.color_palette | join(', ') | lower }}"
+           data-continent="{{ record.classification.location_context.continent | lower }}"
+           data-country="{{ record.classification.location_context.country | lower }}"
+           data-city="{{ record.classification.location_context.city | lower }}"
+           data-year="{{ record.timestamp[:4] }}"
+           data-month="{% set m = record.timestamp[5:7] %}{{ 'january' if m=='01' else 'february' if m=='02' else 'march' if m=='03' else 'april' if m=='04' else 'may' if m=='05' else 'june' if m=='06' else 'july' if m=='07' else 'august' if m=='08' else 'september' if m=='09' else 'october' if m=='10' else 'november' if m=='11' else 'december' }}"
+           data-description="{{ record.classification.description | lower }}"
+           data-tags="{{ record.classification.tags | join(', ') | lower }}"
+           data-annotations="{{ (record.annotations.notes if record.annotations is defined and record.annotations else '') | lower }}"
+           data-user-tags="{{ (record.annotations.user_tags | join(', ') if record.annotations is defined and record.annotations and record.annotations.user_tags else '') | lower }}"
+        >
+            <div class="card-image-wrapper">
+                <img
+                    src="{{ url_for('serve_image', record_id=record.id) }}"
+                    alt="{{ record.classification.garment_type }}"
+                    loading="lazy"
+                >
+                <div class="card-overlay">
+                    <span class="card-type-badge">{{ record.classification.garment_type }}</span>
+                </div>
+            </div>
+            <div class="card-info">
+                <p class="card-description">{{ record.classification.description[:120] }}{% if record.classification.description|length > 120 %}…{% endif %}</p>
+                <div class="card-tags">
+                    {% for tag in record.classification.tags[:4] %}
+                    <span class="tag ai-tag">{{ tag }}</span>
+                    {% endfor %}
+                    {% if record.annotations is defined and record.annotations and record.annotations.user_tags %}
+                        {% for tag in record.annotations.user_tags[:2] %}
+                        <span class="tag user-tag">{{ tag }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="card-meta">
+                    <span class="meta-item">{{ record.classification.location_context.continent }}</span>
+                    <span class="meta-dot">·</span>
+                    <span class="meta-item">{{ record.classification.season }}</span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="empty-state" {% if records %}style="display:none"{% endif %}>
+        <div class="empty-icon">📸</div>
+        <h2>No garments yet</h2>
+        <p>Upload your first inspiration image to get started.</p>
+        <a href="{{ url_for('upload') }}" class="btn btn-primary">Upload Image</a>
+    </div>
+
+    <!-- No Results (Search/Filter) -->
+    <div id="noResults" class="empty-state" style="display:none">
+        <div class="empty-icon">🔍</div>
+        <h2>No matches found</h2>
+        <p>Try adjusting your search or filters.</p>
+        <button onclick="clearAllFilters()" class="btn btn-primary">Clear Filters</button>
+    </div>
+</div>
+{% endblock %}

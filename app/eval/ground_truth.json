@@ -1,0 +1,20 @@
+[
+  {
+    "image_name": "Trending Ankara ShortGowns StylesFashionGalleryFlipmemes_com.jpeg",
+    "expected_attributes": {
+      "garment_type": ["dress", "pinafore dress", "short gown"],
+      "material": ["cotton", "wax print", "ankara"],
+      "continent": ["africa"],
+      "occasion": ["casual", "daywear"]
+    }
+  },
+  {
+    "image_name": "Models of Indian Dresses.jpeg",
+    "expected_attributes": {
+      "garment_type": ["anarkali suit", "gown", "salwar kameez", "lehenga"],
+      "material": ["georgette", "silk", "chiffon", "cotton"],
+      "continent": ["asia"],
+      "occasion": ["festive", "wedding", "formal event"]
+    }
+  }
+]

@@ -1,0 +1,185 @@
+[
+  {
+    "id": "9225e37401544adf92c88a0c4fe68e1f",
+    "original_image_path": "/Users/manikantamb/_MyFiles/Work_/MyWork_Local/Fashion Garmet Classification & Inspiration Web App/app/images/Models of Indian Dresses.jpeg",
+    "stored_image_path": "db/images/2026-04-14/Models of Indian Dresses.jpeg",
+    "timestamp": "2026-04-14T01:03:03.096055",
+    "classification": {
+      "description": "A stunning traditional South Asian Anarkali suit, featuring a rich maroon base. The fitted bodice is intricately embroidered with gold floral patterns and has a high collar and short sleeves. The voluminous, floor-length skirt is designed with elegant tiered layers, each edged with a broad gold border, and is complemented by a matching maroon dupatta draped over the shoulder, also adorned with gold embroidery and a border.",
+      "garment_type": "Anarkali suit",
+      "style": "Traditional, ethnic, elegant, festive",
+      "material": "Georgette (main fabric), Zari embroidery (embellishment)",
+      "color_palette": [
+        "maroon",
+        "gold",
+        "burgundy"
+      ],
+      "pattern": "Floral embroidery (on bodice and dupatta), solid (on skirt), tiered (skirt construction)",
+      "season": "All-season, transitional",
+      "occasion": "Festive, wedding guest, formal event, cultural celebration, evening wear",
+      "consumer_profile": "Culturally aware, traditional fashion enthusiast, elegant dresser, special occasion shopper",
+      "trend_notes": "Classic ethnic wear, timeless design, rich jewel tones, intricate traditional embroidery",
+      "location_context": {
+        "continent": "Asia",
+        "country": "India",
+        "city": "unknown",
+        "setting": "outdoor courtyard/patio"
+      },
+      "tags": [
+        "Anarkali suit",
+        "Indian fashion",
+        "ethnic wear",
+        "maroon gown",
+        "gold embroidery",
+        "tiered skirt",
+        "dupatta",
+        "festive wear",
+        "wedding guest",
+        "traditional dress",
+        "South Asian fashion",
+        "formal wear",
+        "georgette",
+        "high neck",
+        "short sleeve"
+      ]
+    }
+  },
+  {
+    "id": "8d4bb23471dc4e4bbd1b922652c0bf0b",
+    "original_image_path": "/Users/manikantamb/_MyFiles/Work_/MyWork_Local/Fashion Garmet Classification & Inspiration Web App/app/images/Trending Ankara ShortGowns StylesFashionGalleryFlipmemes_com.jpeg",
+    "stored_image_path": "db/images/2026-04-14/Trending Ankara ShortGowns StylesFashionGalleryFlipmemes_com.jpeg",
+    "timestamp": "2026-04-14T01:09:21.669999",
+    "classification": {
+      "description": "A vibrant A-line pinafore dress, crafted from a rich African wax print fabric, is stylishly layered over a crisp white long-sleeved collared shirt. The ensemble is cinched at the waist with a wide, metallic gold-toned belt, and completed with a matching fabric bow tie, creating a sophisticated and culturally expressive look.",
+      "garment_type": "Pinafore dress",
+      "style": "African-inspired, professional, smart-casual, cultural fusion",
+      "material": "Cotton (African wax print fabric for the dress, shirting cotton for the blouse)",
+      "color_palette": [
+        "Mustard yellow",
+        "Deep red",
+        "Royal blue",
+        "White",
+        "Black",
+        "Gold"
+      ],
+      "pattern": "Geometric, abstract, block print, African wax print",
+      "season": "All-season",
+      "occasion": "Office, business casual, cultural event, church, smart everyday",
+      "consumer_profile": "Young professional, culturally expressive, fashion-forward, statement dresser, appreciates unique prints",
+      "trend_notes": "African print fashion, cultural fusion, statement prints, layered dressing, modern workwear with a twist",
+      "location_context": {
+        "continent": "Africa",
+        "country": "unknown",
+        "city": "unknown",
+        "setting": "studio"
+      },
+      "tags": [
+        "African print dress",
+        "Ankara dress",
+        "pinafore dress",
+        "layered dress",
+        "geometric print",
+        "colorful dress",
+        "workwear",
+        "business casual",
+        "cultural fashion",
+        "statement dress",
+        "A-line dress",
+        "sleeveless dress",
+        "bow tie",
+        "gold belt",
+        "vibrant print",
+        "modest fashion"
+      ]
+    }
+  },
+  {
+    "id": "a7528520d2ef459e8396a9da85aac627",
+    "original_image_path": "dom-hill-nimElTcTNyY-unsplash.jpg",
+    "stored_image_path": "db/images/2026-04-14/b0a366eb_dom-hill-nimElTcTNyY-unsplash.jpg",
+    "timestamp": "2026-04-14T01:29:58.468170",
+    "classification": {
+      "description": "A confident woman is styled in a vibrant, monochromatic bright yellow athleisure set, featuring an oversized cropped hoodie and matching drawstring sweatpants. This casual ensemble is given a fashion-forward twist by being paired with sleek white pointed-toe ankle boots, creating an unexpected and bold street-style statement. The outfit exudes a playful yet chic vibe, perfect for a sunny outdoor setting.",
+      "garment_type": "Tracksuit (cropped hoodie and sweatpants)",
+      "style": "Athleisure, streetwear, bold, casual chic",
+      "material": "Fleece-back cotton blend (or similar soft knit fabric)",
+      "color_palette": [
+        "bright yellow",
+        "white"
+      ],
+      "pattern": "Solid",
+      "season": "All-season, transitional",
+      "occasion": "Everyday, casual, street style, urban outing, relaxed social events",
+      "consumer_profile": "Gen-Z trend-forward, young adult, fashion-conscious, confident, urban style enthusiast",
+      "trend_notes": "Monochromatic dressing, athleisure chic, cropped silhouettes, unexpected footwear pairing (sweats with heels/boots), vibrant color trend",
+      "location_context": {
+        "continent": "North America",
+        "country": "USA",
+        "city": "Los Angeles",
+        "setting": "Outdoor, urban, basketball court, coastal view"
+      },
+      "tags": [
+        "yellow tracksuit",
+        "cropped hoodie",
+        "sweatpants",
+        "athleisure",
+        "streetwear",
+        "monochromatic",
+        "casual chic",
+        "white ankle boots",
+        "sporty luxe",
+        "vibrant",
+        "fashion-forward",
+        "urban style",
+        "loungewear",
+        "co-ord set"
+      ]
+    }
+  },
+  {
+    "id": "685a19091c4a4fa1a89269b70f971b2f",
+    "original_image_path": "images.jpeg",
+    "stored_image_path": "db/images/2026-04-13/78a97323_images.jpeg",
+    "timestamp": "2026-04-13T17:30:24.702583",
+    "classification": {
+      "description": "This is a short-sleeved athletic polo shirt, specifically a sports jersey, worn by a male athlete. It features a two-tone blue design with prominent national branding and sports event logos, indicative of a team uniform. The garment is styled for performance and fan support, suitable for high-energy sporting events.",
+      "garment_type": "Polo shirt / Sports Jersey",
+      "style": "Athletic, sportswear, team uniform",
+      "material": "Performance fabric (likely polyester blend or technical knit)",
+      "color_palette": [
+        "light blue",
+        "royal blue",
+        "orange",
+        "white"
+      ],
+      "pattern": "Solid with text and logos",
+      "season": "All-season",
+      "occasion": "Sports event, athletic wear, casual",
+      "consumer_profile": "Sports enthusiasts, athletes, fans of the Indian cricket team, active individuals",
+      "trend_notes": "Performance wear, team merchandise, national pride in sports",
+      "location_context": {
+        "continent": "Asia",
+        "country": "India",
+        "city": "unknown",
+        "setting": "Sports stadium / arena"
+      },
+      "tags": [
+        "sports jersey",
+        "cricket",
+        "India",
+        "athletic wear",
+        "polo shirt",
+        "performance wear",
+        "team uniform",
+        "T20 World Cup",
+        "men's sportswear"
+      ]
+    },
+    "annotations": {
+      "user_tags": [
+        "Virat"
+      ],
+      "notes": ""
+    }
+  }
+]

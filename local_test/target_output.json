@@ -1,0 +1,76 @@
+[{
+  "description": "A vibrant A-line pinafore dress featuring a rich African-inspired geometric and letter print in mustard yellow, deep red, and royal blue. It is stylishly layered over a crisp white long-sleeved shirt with a matching bow tie, and cinched at the waist with a wide metallic gold belt, creating a sophisticated and culturally expressive ensemble. The knee-length hemline and structured silhouette contribute to a polished appearance.",
+  "garment_type": "pinafore dress / layered dress",
+  "style": "contemporary African, smart casual, professional",
+  "material": "cotton (African wax print / Ankara fabric)",
+  "color_palette": [
+    "mustard yellow",
+    "deep red",
+    "royal blue",
+    "white",
+    "black",
+    "metallic gold"
+  ],
+  "pattern": "geometric, abstract, letter/symbol print",
+  "season": "transitional, all-season",
+  "occasion": "office, everyday, smart casual, social event",
+  "consumer_profile": "culturally-conscious, professional, fashion-forward, confident",
+  "trend_notes": "African print revival, statement layering, bold prints, wide waist belts",
+  "location_context": {
+    "continent": "Africa",
+    "country": "unknown",
+    "city": "unknown",
+    "setting": "indoor/modern building"
+  },
+  "tags": [
+    "African print dress",
+    "Ankara fashion",
+    "layered dress",
+    "A-line dress",
+    "smart casual",
+    "office wear",
+    "geometric print",
+    "mustard yellow",
+    "statement belt",
+    "bow tie",
+    "professional style",
+    "cultural fashion"
+  ]
+},
+{
+  "description": "A stunning maroon Anarkali suit featuring a fitted bodice intricately embroidered with gold floral patterns and a high collar. The flowing, tiered skirt is adorned with horizontal gold ribbon accents, complemented by a matching dupatta with gold borders and scattered embroidery. This elegant ensemble is perfect for festive occasions, blending traditional craftsmanship with a graceful silhouette.",
+  "garment_type": "Anarkali Suit",
+  "style": "Traditional Indian, Festive, Elegant",
+  "material": "Georgette (for skirt and dupatta), Silk blend (for bodice base), Metallic embroidery thread",
+  "color_palette": [
+    "Maroon",
+    "Gold",
+    "Cream"
+  ],
+  "pattern": "Floral embroidery, Solid with banded accents",
+  "season": "All-season",
+  "occasion": "Wedding guest, Festive, Formal ethnic event, Party",
+  "consumer_profile": "Women seeking traditional Indian attire for special occasions, likely mid-range to premium segment depending on fabric and craftsmanship.",
+  "trend_notes": "Classic Indian festive wear, timeless embroidery techniques. The tiered skirt adds a contemporary touch to a traditional silhouette.",
+  "location_context": {
+    "continent": "Asia",
+    "country": "India",
+    "city": "unknown",
+    "setting": "Outdoor patio/garden"
+  },
+  "tags": [
+    "Anarkali",
+    "Indian ethnic wear",
+    "Maroon dress",
+    "Gold embroidery",
+    "Traditional",
+    "Festive",
+    "Wedding guest outfit",
+    "Ethnic gown",
+    "Tiered skirt",
+    "Dupatta",
+    "Party wear",
+    "Formal Indian wear"
+  ]
+}
+]
