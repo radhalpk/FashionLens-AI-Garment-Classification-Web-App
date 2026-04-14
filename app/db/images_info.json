@@ -222,5 +222,54 @@
         "statement dress"
       ]
     }
+  },
+  {
+    "id": "776c05b2b7b942b78b45ce40a5b13783",
+    "original_image_path": "1024x512-3.jpeg",
+    "stored_image_path": "db/images/2026-04-13/b08d75f0_1024x512-3.jpeg",
+    "timestamp": "2026-04-13T21:52:52.189829",
+    "classification": {
+      "description": "A collection of comfortable and functional activewear garments suitable for yoga or light exercise. The outfits typically consist of soft, stretchy tops such as t-shirts and tank tops, paired with flexible bottoms like leggings, capris, or sweatpants, all designed for ease of movement and a relaxed fit.",
+      "garment_type": "Activewear ensemble",
+      "style": "Athleisure, functional, minimalist",
+      "material": "Knit (likely cotton blend, polyester blend with spandex)",
+      "color_palette": [
+        "grey",
+        "black",
+        "white",
+        "light grey",
+        "dark grey"
+      ],
+      "pattern": "Solid",
+      "season": "All-season",
+      "occasion": "Everyday, exercise, yoga, gym",
+      "consumer_profile": "Health-conscious individuals, fitness enthusiasts, mainstream activewear consumers",
+      "trend_notes": "Comfort-driven fashion, minimalist athleisure, functional apparel",
+      "designer": "unknown",
+      "location_context": {
+        "continent": "Unknown",
+        "country": "Unknown",
+        "city": "Unknown",
+        "setting": "Yoga studio"
+      },
+      "tags": [
+        "activewear",
+        "athleisure",
+        "yoga wear",
+        "fitness apparel",
+        "workout clothes",
+        "comfortable",
+        "stretchy",
+        "solid color",
+        "minimalist",
+        "gym wear"
+      ]
+    },
+    "annotations": {
+      "user_tags": [
+        "yoga"
+      ],
+      "notes": ""
+    }
   }
 ]

@@ -11,12 +11,13 @@ import time
 from pathlib import Path
 
 # Ensure app/ is on the path
-APP_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent.parent
+APP_DIR = ROOT_DIR / "app"
 sys.path.insert(0, str(APP_DIR))
 
 from fashion_agent.graph import classify_image
 
-EVAL_DIR = APP_DIR / "eval"
+EVAL_DIR = ROOT_DIR / "eval"
 IMAGES_DIR = APP_DIR / "images"
 GROUND_TRUTH_FILE = EVAL_DIR / "ground_truth.json"
 

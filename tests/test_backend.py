@@ -7,7 +7,8 @@ import pytest
 from pathlib import Path
 
 # Add app to path
-APP_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = Path(__file__).resolve().parent.parent
+APP_DIR = ROOT_DIR / "app"
 sys.path.insert(0, str(APP_DIR))
 
 # Mock paths for testing storage without corrupting real DB
