@@ -80,9 +80,8 @@ def classify_image(image_path: str) -> dict:
 
 if __name__ == "__main__":
     # Resolve image path relative to this script's directory
-    script_dir = Path(__file__).parent
-    # image_path = r"/Users/manikantamb/_MyFiles/Work_/MyWork_Local/Fashion Garmet Classification & Inspiration Web App/app/images/Trending Ankara ShortGowns StylesFashionGalleryFlipmemes_com.jpeg"
-    image_path = r"/Users/manikantamb/_MyFiles/Work_/MyWork_Local/Fashion Garmet Classification & Inspiration Web App/app/images/Models of Indian Dresses.jpeg"
+    script_dir = Path(__file__).parent.parent
+    image_path = script_dir / "app" / "images" / "Models of Indian Dresses.jpeg"
 
     print(f"Classifying: {image_path}\n")
     result = classify_image(str(image_path))
